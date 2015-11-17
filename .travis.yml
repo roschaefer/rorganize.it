@@ -8,6 +8,7 @@ matrix:
     - rvm: 2.2.3
     - rvm: ruby-head
 cache: bundler
+sudo: false
 before_script:
   - "bundle exec rake db:migrate"
   - "cp config/secrets.yml.sample config/secrets.yml"
