@@ -1,11 +1,9 @@
-language: ruby
+  language: ruby
 rvm: 
-  - 2.1.0
   - 2.2.3
   - ruby-head
 matrix:
   allow_failures:
-    - rvm: 2.2.3
     - rvm: ruby-head
 cache: bundler
 sudo: false
