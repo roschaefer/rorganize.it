@@ -33,6 +33,11 @@ describe Group, :vcr => {:cassette_name => "create_group" } do
   let!(:person) { create(:person) }
 
 
+  describe "country code normalization", :vcr => {:cassette_name => "create_group"} do
+    subject { build(:group) }
+    include_examples "country code normalization"
+  end
+
   it 'is valid with a name and email' do
     expect(group.valid?).to be_truthy
   end

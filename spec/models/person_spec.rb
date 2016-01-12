@@ -59,6 +59,11 @@ describe Person, :vcr => {:cassette_name => "create_group" } do
     it { is_expected.not_to be_valid }
   end
 
+  describe "country code normalization" do
+    subject { build(:person) }
+    include_examples "country code normalization"
+  end
+
   describe '#has_group?' do
     it 'is not a member of a group' do
       expect(subject.has_group?).to be_falsey
