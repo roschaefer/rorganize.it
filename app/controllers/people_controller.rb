@@ -7,8 +7,8 @@ class PeopleController < ApplicationController
     @people = @people.by_country(params[:country]) if params[:country].present?
     @people = @people.by_city(params[:city]) if params[:city].present?
 
-    @cities = @people.cities
-    @countries = @people.countries
+    @cities = People.cities
+    @countries = People.countries
   end
 
   def show
