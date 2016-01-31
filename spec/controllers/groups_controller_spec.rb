@@ -48,7 +48,15 @@ describe GroupsController, :vcr => {:cassette_name => "create_group" } do
     before do
       allow(controller).to receive :authenticate_person!
       allow(controller).to receive(:current_person).and_return(person)
-      allow(Group).to receive(:find).and_return(group)
+    end
+
+    describe "admins" do
+      let(:person) { create(:admin) }
+
+      it "are allowed to edit groups" do
+        create(:group, :id => 42, :name => "FOO" )
+        expect{put :update, {id: 42, group: {name: "BAR" }}}.to change{Group.find(42).name}.from("FOO").to("BAR")
+      end
     end
 
     context 'as a member of the group' do
